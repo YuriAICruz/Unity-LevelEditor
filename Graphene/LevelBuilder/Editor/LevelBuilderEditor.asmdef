@@ -1,0 +1,13 @@
+{
+    "name": "Graphene.LevelBuilderEditor",
+    "references": [
+        "Graphene.LevelBuilder",
+        "Graphene.Grid"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

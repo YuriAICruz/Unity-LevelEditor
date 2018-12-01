@@ -1,0 +1,8 @@
+{
+    "name": "graphene.levelbuilder",
+    "displayName": "LevelBuilder",
+    "version": "0.1.2",
+    "unity": "2018.2",
+    "description": ". . .",
+    "dependencies": { }
+}
