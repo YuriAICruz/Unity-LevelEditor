@@ -3,6 +3,7 @@ using Graphene.Grid;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 namespace Graphene.LevelBuilder
@@ -44,12 +45,14 @@ namespace Graphene.LevelBuilder
             var mouse = GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
             var pos = new Vector3(mouse.x, mouse.y - 104, _camera.nearClipPlane);
             var ray = HandleUtility.GUIPointToWorldRay(pos);
-            var color = Handles.color;
-            Handles.color = Color.magenta;
+            
             var cell = _grid.Grid.GetPos(ray);
             
             if (cell != null)
             {
+                var color = Handles.color;
+                Handles.color = Color.magenta;
+                
                 var sqr = cell.GetEdges();
 
                 for (int i = 0, n = sqr.Length; i < n; i++)
@@ -71,11 +74,14 @@ namespace Graphene.LevelBuilder
                     EditorUtility.SetDirty(_self);
                     EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
                 }
+                
+                Handles.color = color;
+                
+                SceneView.RepaintAll();
             }
 
             var p = ray.GetPoint(10);
             
-            Handles.color = color;
             Handles.DrawWireDisc(p, _camera.transform.forward, 0.1f);
 
             DrawLevelInfo();
